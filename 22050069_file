@@ -36,7 +36,7 @@ pipeline {
 
                   puppet resource file /tmp/22050069 ensure=directory;
 
-                  cd /tmp/22050112/clone;
+                  cd /tmp/22050069/clone;
 
                   git clone https://github.com/tjyDouglas/22050112_repo;
 
@@ -44,13 +44,13 @@ pipeline {
 
                  targets=22050112-websvr.localdomain;
 
-                 locate_script='/tmp/22050112/clone/22050112_repo/22050112.script';
+                 locate_script='/tmp/22050069/clone/22050112_repo/22050069.script';
 
                  bolt script run $locate_script -t $targets -u admin -p password --no-host-key-check --run-as root;
 
                  '''
 
-                 echo "22050112STG2: Push change to production web server updated"
+                 echo "22050069STG2: Push change to production web server updated"
 
           }
 
