@@ -1,1 +1,141 @@
+pipeline {
 
+      agent any
+
+      stages {
+
+          stage('22050069112STG1') {
+
+           steps {
+
+            input('22050069STG1: Push change to production web server?')
+
+          }
+
+          }
+
+         
+
+          stage('22050069STG2') {
+
+          when {
+
+                not {
+
+                    branch "Aborted"
+
+                }
+
+          }
+
+          steps {
+
+                 sh '''#!/bin/bash
+
+                    puppet resource file /tmp/22050069/clone ensure=absent force=true;
+
+                  puppet resource file /tmp/22050069 ensure=directory;
+
+                  cd /tmp/22050112/clone;
+
+                  git clone https://github.com/tjyDouglas/22050112_repo;
+
+              
+
+                 targets=22050112-websvr.localdomain;
+
+                 locate_script='/tmp/22050112/clone/22050112_repo/22050112.script';
+
+                 bolt script run $locate_script -t $targets -u admin -p password --no-host-key-check --run-as root;
+
+                 '''
+
+                 echo "22050112STG2: Push change to production web server updated"
+
+          }
+
+          }
+
+          
+
+          stage('22050069STG3') {
+
+           steps {
+
+            input('22050069STG3: Proceed to test production web service?')
+
+          }
+
+          }
+
+          
+
+   stage('22050112STG4') {
+
+          when {
+
+                not {
+
+                    branch "Aborted"
+
+                }
+
+          }
+
+          steps {
+
+          sh '''#!/bin/bash
+
+	  curl -sI http://22050069-websvr.localdomain | head -n 1 > /tmp/web-test-result.txt	  
+
+	  cat /tmp/web-test-result.txt
+
+	    '''
+
+                echo "22050069STG4: Production web server testing completed"
+
+          }
+
+          }
+
+          stage('22050069STG5') {
+
+          steps {
+
+            input('22050069STG5: Web server testing result has been inspected')
+
+          }
+
+          }
+
+          
+
+           
+
+         
+
+         stage('22050069STG6') {
+
+          when {
+
+                not {
+
+                    branch "Aborted"
+
+                }
+
+          }
+
+          steps {
+
+                echo "22050069STG6: Production Operation is successful"
+
+          }
+
+          }  
+
+          
+
+      }
+
+}
