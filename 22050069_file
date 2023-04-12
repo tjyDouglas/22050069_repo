@@ -46,7 +46,7 @@ pipeline {
 
                  locate_script='/tmp/22050069/clone/22050069_repo/22050069.script';
 
-                 bolt script run $locate_script -t $targets -u admin -p password --no-host-key-check --run-as root;
+                 bolt script run $locate_script -t $targets -u clientadm -p password --no-host-key-check --run-as root;
 
                  '''
 
