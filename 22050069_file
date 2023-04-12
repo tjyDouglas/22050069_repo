@@ -38,7 +38,7 @@ pipeline {
 
                   cd /tmp/22050069/clone;
 
-                  git clone https://github.com/tjyDouglas/22050069_repo.git;
+                  git clone https://github.com/tjyDouglas/22050069_repo;
 
               
 
