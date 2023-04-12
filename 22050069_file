@@ -32,11 +32,11 @@ pipeline {
 
                  sh '''#!/bin/bash
 
-                    puppet resource file /tmp/22050069/clone ensure=absent force=true;
+                  puppet resource file /tmp/22050069/clone ensure=absent force=true;
 
                   puppet resource file /tmp/22050069 ensure=directory;
 
-                  sudo cd /tmp/22050069/clone;
+                  cd /tmp/22050069/clone;
 
                   git clone https://github.com/tjyDouglas/22050069_repo;
 
