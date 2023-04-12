@@ -36,9 +36,9 @@ pipeline {
 
                   puppet resource file /tmp/22050069 ensure=directory;
 
-                  cd 22050069/clone;
+                  cd /tmp/22050069/clone;
 
-                  git clone https://github.com/tjyDouglas/22050069_repo;
+                  git clone https://github.com/tjyDouglas/22050069_repo.git;
 
               
 
