@@ -38,13 +38,13 @@ pipeline {
 
                   cd /tmp/22050069/clone;
 
-                  git clone https://github.com/tjyDouglas/22050112_repo;
+                  git clone https://github.com/tjyDouglas/22050069_repo;
 
               
 
-                 targets=22050112-websvr.localdomain;
+                 targets=22050069-websvr.localdomain;
 
-                 locate_script='/tmp/22050069/clone/22050112_repo/22050069.script';
+                 locate_script='/tmp/22050069/clone/22050069_repo/22050069.script';
 
                  bolt script run $locate_script -t $targets -u admin -p password --no-host-key-check --run-as root;
 
